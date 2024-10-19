@@ -1,0 +1,14 @@
+
+.navbar-background {
+    /* background: rgba(0, 0, 0, 0.3) url('../images/landing.jpg') no-repeat center center / cover; */
+    transition: background-color 0.3s ease, background-image 0.3s ease;
+}
+
+.navbar-dark {
+    background-color: rgba(7, 7, 7, 0.9); 
+}
+
+
+.colorr{
+    background-color: rgba(7, 7, 7, 0.9); 
+}

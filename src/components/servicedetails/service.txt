@@ -1,0 +1,222 @@
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import Navbar from '../Navbar';
+import { useUser } from '../UserContext';
+import Swal from 'sweetalert2'; 
+import { useVendor } from '../VendorContext';
+
+function ServiceDetails() {
+
+  const [uname, setName] = useState('');
+  const [uemail, setEmail] = useState('');
+  const [uphone, setPhone] = useState('');
+  const [date, setDate] = useState('');
+  const [area, setArea] = useState('');
+  const [message, setMessage] = useState('');
+  const [add_message, setAMessage] = useState('');
+  const [refresh, setRefresh] = useState(false); // State for forcing re-render
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { username } = useUser(); 
+  const { fname } = useVendor();
+  const { v_name, lname, image, company, type, image1, phone, email, year, price, about } = location.state || {};
+
+  const handleRequestPricing = () => {
+    if (fname) {
+      Swal.fire({
+        icon: 'error',
+        title: 'You are not able to Request Pricing',
+        text: 'Vendors are not allowed to request for pricing!',
+        showConfirmButton: true,
+        confirmButtonText: 'OK',
+      });
+    } else if (username) {
+      const modal = new window.bootstrap.Modal(document.getElementById('requestPricingModal'));
+      modal.show();
+    } else {
+      navigate('/login');
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+   
+    try {
+      const response = await fetch('http://localhost:3003/user_request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, uname, uemail, uphone, date, area, message, add_message, v_name }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Successfully Sent to Vendor',
+          text: 'Your request was sent successfully!',
+          showConfirmButton: true,
+          confirmButtonText: 'OK',
+          position: 'bottom-end', 
+          timer: 4000, 
+          toast: true, 
+          showCloseButton: true, 
+        });
+
+        // Reset form fields
+        setName('');
+        setEmail('');
+        setPhone('');
+        setDate('');
+        setArea('');
+        // setMessage('');
+        setAMessage('');
+
+        // Force re-render
+        setRefresh(prev => !prev);
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Request Not Sent',
+          text: data.message || 'Something went wrong. Please try again.',
+          position: 'bottom-end', 
+          timer: 4000, 
+          toast: true, 
+          showCloseButton: true, 
+        });
+      }
+    } catch (e) {
+      console.log("Error in request");
+    }
+
+   
+    const modal = window.bootstrap.Modal.getInstance(document.getElementById('requestPricingModal'));
+    modal.hide();
+  };
+
+  return (
+    <div>
+      <Navbar />
+
+      <div className="container-fluid">
+        <div className="row align-items-center text-center py-5" style={{ backgroundColor: "#343a40", color: "white" }}>
+          <div className="col">
+            <h1 className="display-4 fw-bold pt-4">{company}</h1>
+            <p className="lead">Specializing in {type} services</p>
+          </div>
+        </div>
+
+        <div className="container-fluid my-5">
+          <div className="row">
+            <div className="col-md-6 mb-4">
+              <img src={image} alt={`${company} Vendor`} className="img-fluid rounded shadow" />
+            </div>
+
+            <div className="col-md-6">
+              <h2 className="mb-3" style={{ fontSize: "2.5rem", fontWeight: "bold" }}>{company}</h2>
+              <p className="text-muted mb-2">This vendor is known for <span className="fw-bold text-info">{type}</span> services</p>
+              <p className="mb-2"><strong>Provided by:</strong> {v_name} {lname}</p>
+              <p className="mb-2">Phone Number: {phone}</p>
+              <p className="mb-2">Year Since: {year}</p>
+              <p className="mb-2">Gmail: <span className="fw-bold">{email}</span></p>
+              {price && <p className="mb-2">Price Per Square Meter: {price}</p>}
+
+              <div className='row justify-content-center pt-3'>
+                <div className='col-10'>
+                  <button className='btn btn-sm btn-warning' onClick={handleRequestPricing}>Request Pricing</button>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+          <div className='row mt-3'>
+            <div className='col-12'>
+              <div className='row justify-content-center'>
+                <div className='col-2'>
+                <div className='h2'>About Us</div>
+                </div>
+              </div>
+             
+            </div>
+
+            <div className='col-12 mt-3'>{about}</div>
+          </div>
+
+
+          <div className="row mt-5">
+            <div className="col text-center">
+              <h3 className="mb-4" style={{ fontSize: "2rem", fontWeight: "bold" }}>Additional Images</h3>
+              <div className="row justify-content-center">
+                <div className="col-md-4 mb-3">
+                  <img src={image1} alt="Additional" className="img-fluid rounded shadow" />
+                </div>
+                <div className="col-md-4 mb-3">
+                  <img src={image} alt="Additional" className="img-fluid rounded shadow" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="row py-5" style={{ backgroundColor: "#343a40", color: "white" }}>
+            <div className="col text-center">
+              <p className="lead mb-0">Ready to work with {company}? Contact us now!</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="modal fade" id="requestPricingModal" tabIndex="-1" aria-labelledby="requestPricingModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="requestPricingModalLabel">Request Pricing</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <p>Fill out the form below to request a pricing quote.</p>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label htmlFor="message" className="form-label">Message</label>
+                    <textarea className="form-control" id="message" rows="3" onChange={(e) => setMessage(e.target.value)} defaultValue="We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!"/>
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="uname" className="form-label">Name</label>
+                    <input type="text" className="form-control" id="uname" value={uname} onChange={(e) => setName(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="uemail" className="form-label">Email</label>
+                    <input type="email" className="form-control" id="uemail" value={uemail} onChange={(e) => setEmail(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="uphone" className="form-label">Phone Number</label>
+                    <input type="tel" className="form-control" id="uphone" value={uphone} onChange={(e) => setPhone(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="eventDate" className="form-label">When you want to start our services</label>
+                    <input type="date" className="form-control" id="eventDate" value={date} onChange={(e) => setDate(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="service" className="form-label">Mention Area of Square Meters</label>
+                    <input type="text" className="form-control" id="service" value={area} onChange={(e) => setArea(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="additionalMessage" className="form-label">Additional Message</label>
+                    <textarea className="form-control" id="additionalMessage" rows="3" value={add_message} onChange={(e) => setAMessage(e.target.value)} />
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ServiceDetails;
