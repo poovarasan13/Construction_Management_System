@@ -64,9 +64,8 @@ function VendorProgress() {
 
   useEffect(() => {
     fetchProgressRequests(); 
-  }, [fname]);
-
-  // Filter requests that are not completed (progress < 100)
+  }, [fname]); 
+  
   const incompleteRequests = progressRequests.filter(request => request.progress < 100);
 
   return (

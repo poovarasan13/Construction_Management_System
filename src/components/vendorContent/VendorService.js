@@ -60,6 +60,7 @@ function VendorService() {
         if (image1) {
             formData.append('image1', image1);
         }
+        console.log(formData)
 
         try {
             const response = editingService
@@ -73,6 +74,7 @@ function VendorService() {
                   });
 
             const data = await response.json();
+            console.log(data);
 
             if (data.success) {
                 await Swal.fire({

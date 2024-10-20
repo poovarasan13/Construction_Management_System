@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '../UserContext';
+import ComplaintForm from './ComplaintForm';
 
 function UserProgress() {
   const { username } = useUser();
+  const [displayComplaint, setDisplayComplaint] = useState(true);
   const [progressRequests, setProgressRequests] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const [details, setDetails] = useState(null);
+
+  const raiseAComplaint = (request) => {
+    setDisplayComplaint(false);
+    setDetails(request); // Directly set the request object
+  };
 
   const fetchProgressRequests = async () => {
     if (username) {
@@ -18,7 +26,6 @@ function UserProgress() {
         }
 
         const progressData = await response.json();
-        // Filter out requests that are not completed
         const ongoingRequests = progressData.requests.filter(request => request.progress < 100);
         setProgressRequests(ongoingRequests || []);
         setErrorMessage('');
@@ -30,50 +37,63 @@ function UserProgress() {
   };
 
   useEffect(() => {
+    console.log('Username:', username); 
     fetchProgressRequests();
   }, [username]);
 
   return (
     <div>
       <div className="col-12 pb-5">
-        <div className="container-fluid mt-4 pb-5">
-          <h2 className="mb-4">Your Requests Progress</h2>
-          {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
-          {progressRequests.length > 0 ? (
-            <div className="row pb-5">
-              {progressRequests.map((request) => (
-                <div className="col-12 mb-3" key={request._id}>
-                  <div
-                    className="card"
-                    style={{
-                      width: '100%',
-                      border: '1px solid #007bff',
-                      transition: 'background-color 0.3s ease',
-                    }}
-                  >
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col">
-                          <p><strong>Service Start Date:</strong> {request.date}</p>
-                          <p><strong>Vendor Name:</strong> {request.v_name}</p>
-                          <p><strong>Type of Service:</strong> {request.type}</p>
-                          <p><strong>Area:</strong> {request.area}</p>
-                          <p><strong>Location:</strong> {request.place}</p>
-                          <p><strong>Price:</strong> ₹{request.amount}</p>
-                          <p><strong>Progress:</strong> {request.progress}%</p>
+        {displayComplaint && (
+          <div className="container-fluid mt-4 pb-5">
+            <h2 className="mb-4">Your Ongoing Progress</h2>
+            {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+            {progressRequests.length > 0 ? (
+              <div className="row pb-5">
+                {progressRequests.map((request) => (
+                  <div className="col-12 mb-3" key={request._id}>
+                    <div className="card" style={{ width: '100%', border: '1px solid #007bff' }}>
+                      <div className="card-body">
+                        <div className="row">
+                          <div className="col">
+                            <p><strong>Service Start Date:</strong> {request.date}</p>
+                            <p><strong>Vendor Name:</strong> {request.v_name}</p>
+                            <p><strong>Type of Service:</strong> {request.type}</p>
+                            <p><strong>Area:</strong> {request.area}</p>
+                            <p><strong>Location:</strong> {request.place}</p>
+                            <p><strong>Price:</strong> ₹{request.amount}</p>
+                            <p><strong>Progress:</strong> {request.progress}%</p>
+                          </div>
+                        </div>
+                        <div className='row'>
+                          <div className='col-4'>
+                            <div className='btn btn-sm btn-danger' onClick={() => raiseAComplaint(request)}>
+                              Raise a Complaint
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="alert alert-info" role="alert">
-              No ongoing progress requests available.
-            </div>
-          )}
-        </div>
+                ))}
+              </div>
+            ) : (
+              <div className="alert alert-info" role="alert">
+                No ongoing progress requests available.
+              </div>
+            )}
+          </div>
+        )}
+        
+        {!displayComplaint && (
+          <ComplaintForm 
+              setDisplayComplaint={setDisplayComplaint}
+              v_name={details.v_name} 
+              company={details.company}
+              type={details.type}
+              email={details.uemail}
+          />
+        )}
       </div>
     </div>
   );

@@ -10,56 +10,55 @@ function UserRequest() {
   const handleAcceptRequest = async (request) => {
     console.log('Request ID:', request._id); 
     try {
-   
-      const progressResponse = await fetch('http://localhost:3003/progress/accept', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          uname: request.username,
-          uemail: request.uemail,
-          uphone: request.uphone,
-          date: request.date,
-          area: request.area,
-          v_name: request.v_name,
-          type: request.type,
-          place: request.place,
-          amount: request.amount,
-        }),
-      });
-  
-      if (progressResponse.ok) {
-        const progressData = await progressResponse.json();
-        console.log('Request accepted and added to progress:', progressData);
-  
-     
-        const displayResponse = await fetch(`http://localhost:3003/user_request/display/${request._id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            display: true,
-          }),
+        const progressResponse = await fetch('http://localhost:3003/progress/accept', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                uname: request.uname,
+                username: request.username,
+                uemail: request.uemail,
+                uphone: request.uphone,
+                date: request.date,
+                area: request.area,
+                v_name: request.v_name,
+                type: request.type,
+                place: request.place,
+                amount: request.amount,
+                progress: 0,  // Explicitly set progress to 0
+            }),
         });
-  
-        if (displayResponse.ok) {
-          const displayData = await displayResponse.json();
-          console.log('Display field updated successfully:', displayData);
+
+        if (progressResponse.ok) {
+            const progressData = await progressResponse.json();
+            console.log('Request accepted and added to progress:', progressData);
+            
+            // Update display field after adding to progress
+            const displayResponse = await fetch(`http://localhost:3003/user_request/display/${request._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ display: true }),
+            });
+
+            if (displayResponse.ok) {
+                const displayData = await displayResponse.json();
+                console.log('Display field updated successfully:', displayData);
+            } else {
+                console.error('Error updating display field in user_request');
+            }
+
+            fetchRequests(); 
         } else {
-          console.error('Error updating display field in user_request');
+            console.error('Error accepting request');
         }
-  
-        fetchRequests(); 
-      } else {
-        console.error('Error accepting request');
-      }
     } catch (error) {
-      console.error('Error handling accept:', error);
+        console.error('Error handling accept:', error);
     }
-  };
-  
+};
+
 
  
 const handleRejectRequest = async (request) => {
@@ -70,6 +69,7 @@ const handleRejectRequest = async (request) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        username:request.username,
         uname: request.uname,
         uemail: request.uemail,
         uphone: request.uphone,
@@ -92,6 +92,7 @@ const handleRejectRequest = async (request) => {
         },
         body: JSON.stringify({
           display: true, 
+         
         }),
       });
 
@@ -160,7 +161,7 @@ const handleRejectRequest = async (request) => {
                       }}
                     >
                       <div className="card-body">
-                        <h5 className="card-title">Name of Customer: {request.uname}</h5>
+                        <h5 className="card-title">Name of Vendor: {request.v_name}</h5>
                         <p className="card-text">
                           <strong>Message:</strong> {request.message}
                         </p>

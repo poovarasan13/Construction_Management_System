@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useVendor } from '../VendorContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function VendorRequest() {
   const { fname } = useVendor();
   const [requests, setRequests] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedRequestId, setSelectedRequestId] = useState(null);
+  const [amount, setAmount] = useState('');
 
   useEffect(() => {
     const fetchRequests = async () => {
@@ -32,16 +36,25 @@ function VendorRequest() {
     fetchRequests();
   }, [fname]);
 
-  const handleAccept = async (requestId) => {
-    try {
-      const amount = window.prompt('Enter the amount to charge the customer (₹):');
-      
-      if (!amount || isNaN(amount) || amount <= 0) {
-        setErrorMessage('Invalid amount entered.');
-        return;
-      }
+  const handleAccept = (requestId) => {
+    setSelectedRequestId(requestId);
+    setShowModal(true);
+  };
 
-      const response = await fetch(`http://localhost:3003/requests/accept/${requestId}`, {
+  const handleModalClose = () => {
+    setShowModal(false);
+    setAmount('');
+    setErrorMessage('');
+  };
+
+  const handleConfirmAccept = async () => {
+    if (!amount || isNaN(amount) || amount <= 0) {
+      setErrorMessage('Invalid amount entered.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3003/requests/accept/${selectedRequestId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -53,9 +66,10 @@ function VendorRequest() {
       if (data.success) {
         setRequests((prevRequests) => 
           prevRequests.map(request => 
-            request._id === requestId ? { ...request, accept: true, reject: false, amount } : request
+            request._id === selectedRequestId ? { ...request, accept: true, reject: false, amount } : request
           )
         );
+        handleModalClose();
       } else {
         console.error(data.message);
         setErrorMessage(data.message);
@@ -105,8 +119,8 @@ function VendorRequest() {
           <div className="row pb-5">
             {requests
               .filter(request => !request.display) // Only show requests where display is false
-              .map((request, index) => (
-                <div className="col-md-6 mb-3" key={index}>
+              .map((request) => (
+                <div className="col-md-6 mb-3" key={request._id}>
                   <div className="card" style={{ width: "100%", border: "1px solid #007bff" }}>
                     <div className="card-body">
                       <h5 className="card-title">Name of Customer: {request.uname}</h5>
@@ -117,16 +131,15 @@ function VendorRequest() {
                       <p><strong>Type of Service:</strong> {request.type}</p>
                       <p><strong>Area:</strong> {request.area}</p>
                       <p><strong>Location:</strong> {request.place}</p>
-  
-                      {request.amount && <p><strong>Amount Charged:</strong> ₹{request.amount}</p>}
-  
+                      {request.price && (
+                        <p><strong>Amount For Services:</strong> ₹{request.price *parseInt( request.area)}</p>
+                      )}
                       {/* Conditional rendering based on accept/reject status */}
                       {request.accept ? (
-                        <p><p className="text-success">Request Accepted</p>
-                        <p>Waiting for User Confirmation</p></p>
+                        <p><span className="text-success">Request Accepted</span>
+                          <p>Waiting for User Confirmation</p></p>
                       ) : request.reject ? (
-                      <p className="text-danger">Request Rejected</p>
-                       
+                        <p className="text-danger">Request Rejected</p>
                       ) : (
                         <div className="d-flex justify-content-between mt-3">
                           <button
@@ -152,9 +165,42 @@ function VendorRequest() {
           </div>
         )}
       </div>
+
+      {/* Standard Bootstrap Modal */}
+      <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }} onClick={handleModalClose}>
+  <div className="modal-dialog" onClick={(e) => e.stopPropagation()}> {/* Prevent clicks on modal content from closing the modal */}
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title">Confirm Amount</h5>
+        <button type="button" className="close" onClick={handleModalClose}>
+          <span>&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        <p>Enter the amount for services:</p>
+        <input
+          type="number"
+          className="form-control"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="Enter amount (₹)"
+        />
+        {errorMessage && <div className="alert alert-danger mt-2">{errorMessage}</div>}
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" onClick={handleModalClose}>
+          Cancel
+        </button>
+        <button type="button" className="btn btn-primary" onClick={handleConfirmAccept}>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{showModal && <div className="modal-backdrop fade show" onClick={handleModalClose}></div>}
     </div>
   );
-  
 }
 
 export default VendorRequest;

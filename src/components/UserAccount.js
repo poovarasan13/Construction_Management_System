@@ -46,7 +46,7 @@ function UserAccount() {
                                <div className='row border border-1 ps-3 pe-0  border-top-0 border-start-0 border-end-0  bg-warning py-2'>
                                                                    <div className='col   py-2'>
                                     <Link to='/account/complete' className='text-decoration-none text-dark  px-5 py-2 '>
-                                        Progress
+                                        Complete
                                     </Link>
                                 </div>
                                </div>

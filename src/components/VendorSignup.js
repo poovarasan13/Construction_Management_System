@@ -31,7 +31,7 @@ function VendorSignup() {
       const data = await response.json();
 
       if (data.success) {
-        // Show success message
+       
         Swal.fire({
           icon: 'success',
           title: 'Vendor Registered Successfully!',

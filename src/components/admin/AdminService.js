@@ -11,7 +11,7 @@ function AdminService() {
         
         const fetchServices = async () => {
             try {
-                const response = await fetch('http://localhost:3003/adminservice');
+                const response = await fetch('http://localhost:3003/service');
                 const data = await response.json();
 
                 if (data.success) {
