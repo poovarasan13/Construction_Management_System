@@ -20,8 +20,10 @@ router.get('/progress/:username', async (req, res) => {
   const { username } = req.params;
 
   try {
-    const requests = await ProgressModel.find({ uname: username });
+    const requests = await ProgressModel.find({ username: username });
     res.status(200).json({ requests });
+    console.log('Fetched Requests for User:', username, requests);
+
   } catch (error) {
     console.error('Error fetching progress requests:', error);
     res.status(500).json({ message: 'Failed to fetch progress requests.' });
@@ -29,11 +31,12 @@ router.get('/progress/:username', async (req, res) => {
 });
 
 
-router.get('/progresss/:fname', async (req, res) => { 
+router.get('/progresss/:fname', async (req, res) => {
   const { fname } = req.params; 
-
+  console.log('Fetching progress for:', fname); 
   try {
     const requests = await ProgressModel.find({ v_name: fname }); 
+    console.log('Fetched Requests:', requests); 
     res.status(200).json({ requests });
   } catch (error) {
     console.error('Error fetching progress requests:', error);
@@ -42,39 +45,42 @@ router.get('/progresss/:fname', async (req, res) => {
 });
 
 router.post('/progress/accept', async (req, res) => {
-    const { uname, uemail, uphone, date, area, v_name, type, place, amount } = req.body;
-  
-    try {
-    
+  const { username, uname, uemail, uphone, date, area, v_name, type, place, amount, progress } = req.body;
+
+  try {
       const newProgress = new ProgressModel({
-        uname,
-        uemail,
-        uphone,
-        date,
-        area,
-        v_name,
-        type,
-        place,
-        amount,
-        accept: true,
-        reject: false,
+          username,
+          uname,
+          uemail,
+          uphone,
+          date,
+          area,
+          v_name,
+          type,
+          place,
+          amount,
+          accept: true,
+          reject: false,
+          progress: 0, // Default to 0 if not provided
       });
-  
+
       await newProgress.save(); 
       res.status(201).json(newProgress); 
-    } catch (error) {
+  } catch (error) {
       console.error('Error adding accepted request to progress:', error);
       res.status(500).json({ message: 'Error adding accepted request to progress' });
-    }
-  });
+  }
+});
+
   
   // Reject request and add to progress
   router.post('/progress/reject', async (req, res) => {
-    const { uname, uemail, uphone, date, area, v_name, type, place } = req.body;
+    const { username,uname, uemail, uphone, date, area, v_name, type, place } = req.body;
   
     try {
       // Add the rejected request directly to the progress table
       const newProgress = new ProgressModel({
+        username,
         uname,
         uemail,
         uphone,

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const progressSchema = new mongoose.Schema({
+  username:{type:String,required:true},
   uname: { type: String, required: true },
   uemail: { type: String, required: true },
   uphone: { type: String, required: true },
