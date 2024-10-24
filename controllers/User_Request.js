@@ -28,11 +28,11 @@ router.put('/user_request/display/:id', async (req, res) => {
   });
   
 router.post('/user_request', async (req, res) => {
-    const { username, uname,uemail,uphone,date,area,message,add_message,v_name,type,place,price} = req.body;
+    const { username,useremail,userphone,date,area,message,add_message,v_name,type,type1,place,price} = req.body;
     console.log('Received data:', req.body);
 
     try {
-        const newUser = await UserRequestModel.create({ username, uname,uemail,uphone,date,area,message,add_message,v_name ,type,place,price});
+        const newUser = await UserRequestModel.create({ username,useremail,userphone,date,area,message,add_message,v_name ,type,type1,place,price});
        
         res.json({ success: true, message: 'Request Sent successfully', user: newUser });
     } catch (error) {
@@ -80,13 +80,12 @@ router.get('/request/:username', async (req, res) => {
 
 router.put('/requests/accept/:id', async (req, res) => {
     const { id } = req.params;
-    const { amount } = req.body; 
+    const { amount, products } = req.body;
 
     try {
-       
         const updatedRequest = await UserRequestModel.findByIdAndUpdate(
             id,
-            { accept: true, reject: false, amount },  
+            { accept: true, reject: false, amount, products },
             { new: true }
         );
 

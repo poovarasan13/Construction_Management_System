@@ -45,23 +45,24 @@ router.get('/progresss/:fname', async (req, res) => {
 });
 
 router.post('/progress/accept', async (req, res) => {
-  const { username, uname, uemail, uphone, date, area, v_name, type, place, amount, progress } = req.body;
+  const {  username, useremail, userphone, date, area, v_name, type, type1,place, amount, progress } = req.body;
 
   try {
       const newProgress = new ProgressModel({
           username,
-          uname,
-          uemail,
-          uphone,
+        
+          useremail,
+          userphone,
           date,
           area,
           v_name,
           type,
+          type1,
           place,
           amount,
           accept: true,
           reject: false,
-          progress: 0, // Default to 0 if not provided
+          progress 
       });
 
       await newProgress.save(); 
@@ -75,19 +76,20 @@ router.post('/progress/accept', async (req, res) => {
   
   // Reject request and add to progress
   router.post('/progress/reject', async (req, res) => {
-    const { username,uname, uemail, uphone, date, area, v_name, type, place } = req.body;
+    const { username, useremail, userphone, date, area, v_name, type,type1, place } = req.body;
   
     try {
       // Add the rejected request directly to the progress table
       const newProgress = new ProgressModel({
         username,
-        uname,
-        uemail,
-        uphone,
+        
+        useremail,
+        userphone,
         date,
         area,
         v_name,
         type,
+        type1,
         place,
         amount: 0, 
         accept: false,
