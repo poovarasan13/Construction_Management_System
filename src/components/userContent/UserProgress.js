@@ -11,7 +11,7 @@ function UserProgress() {
 
   const raiseAComplaint = (request) => {
     setDisplayComplaint(false);
-    setDetails(request); // Directly set the request object
+    setDetails(request); 
   };
 
   const fetchProgressRequests = async () => {
@@ -59,7 +59,9 @@ function UserProgress() {
                             <p><strong>Service Start Date:</strong> {request.date}</p>
                             <p><strong>Vendor Name:</strong> {request.v_name}</p>
                             <p><strong>Type of Service:</strong> {request.type}</p>
-                            <p><strong>Area:</strong> {request.area}</p>
+                            <p><strong>Specific Type in {request.type}:</strong> {request.type1}</p>
+
+                            <p><strong>Area:</strong> {request.area} Square meter</p>
                             <p><strong>Location:</strong> {request.place}</p>
                             <p><strong>Price:</strong> ₹{request.amount}</p>
                             <p><strong>Progress:</strong> {request.progress}%</p>

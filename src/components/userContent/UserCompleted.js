@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useUser } from '../UserContext';
 
 function UserCompleted() {
@@ -6,7 +6,7 @@ function UserCompleted() {
   const [completedRequests, setCompletedRequests] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const fetchCompletedRequests = async () => {
+  const fetchCompletedRequests = useCallback(async () => {
     if (username) {
       try {
         const response = await fetch(`http://localhost:3003/progress/${username}`);
@@ -27,11 +27,11 @@ function UserCompleted() {
         setErrorMessage('Failed to fetch completed requests. Please try again later.');
       }
     }
-  };
+  }, [username]);
 
   useEffect(() => {
     fetchCompletedRequests();
-  }, [username]);
+  }, [fetchCompletedRequests]);
 
   return (
     <div>

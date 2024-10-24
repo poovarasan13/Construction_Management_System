@@ -39,7 +39,7 @@ function Login() {
           text: 'Welcome back!',
           toast: true,
           showConfirmButton: false,
-          timer: 3000,
+          timer: 2000,
         });
 
         console.log("User login success and redirect to home page");

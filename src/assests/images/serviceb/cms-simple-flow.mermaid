@@ -1,0 +1,31 @@
+graph TB
+    A((Start)) --> B[Login/Signup]
+    
+    B -->|User| C[User Portal]
+    B -->|Vendor| D[Vendor Portal]
+    B -->|Admin| E[Admin Portal]
+    
+    C --> F[User Functions]
+    F --> G[Profile]
+    F --> H[Service Requests]
+    F --> I[View Progress]
+    F --> J[Completed Projects]
+    H --> K[Submit Complaints]
+    
+    D --> L[Vendor Functions]
+    L --> M[Service Management]
+    M --> N[Add/Update/Delete Services]
+    L --> O[Handle Requests]
+    O --> P[Update Amount & Materials]
+    L --> Q[Track Projects]
+    
+    E --> R[Admin Functions]
+    R --> S[Project Overview]
+    R --> T[Handle Complaints]
+
+    classDef default fill:#fff,stroke:#333
+    classDef portal fill:#fff,stroke:#333,stroke-width:2px
+    classDef function fill:#fff,stroke:#333
+    
+    class B,C,D,E portal
+    class F,L,R function

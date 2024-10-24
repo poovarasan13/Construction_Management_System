@@ -16,17 +16,18 @@ function UserRequest() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                uname: request.uname,
+
                 username: request.username,
-                uemail: request.uemail,
-                uphone: request.uphone,
+                useremail: request.useremail,
+                userphone: request.userphone,
                 date: request.date,
                 area: request.area,
                 v_name: request.v_name,
                 type: request.type,
+                type1:request.type1,
                 place: request.place,
                 amount: request.amount,
-                progress: 0,  // Explicitly set progress to 0
+                progress: 0,  
             }),
         });
 
@@ -175,19 +176,37 @@ const handleRejectRequest = async (request) => {
                               <strong>Type of Service:</strong> {request.type}
                             </p>
                             <p>
+                              <strong>Specific Type in {request.type}:</strong> {request.type1}
+                            </p>
+                            {request.products && request.products.length > 0 && (
+                    <div>
+                      <strong>Suggested Products From Vendor:</strong>
+                      <ul>
+                        {request.products.map((product, productIndex) => (
+                          <li key={productIndex}>
+                            {product.name}
+
+                            {product.quantity && ` (Quantity: ${product.quantity})`}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                            <p>
                               <strong>Area:</strong> {request.area}
                             </p>
                             <p>
                               <strong>Location:</strong> {request.place}
                             </p>
-                          </div>
-                        </div>
-
-                         {!request.accept && !request.reject && (
+                            {!request.accept && !request.reject && (
                           <div className="mt-3">
                             <h4 className="text-dark mt-3">Status: Pending</h4>
                           </div>
                         )}
+
+                          </div>
+                        </div>
+
 
                       
                         {request.accept && (

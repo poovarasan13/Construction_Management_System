@@ -1,9 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import backimg from "../../assests/images/services/concrete.jpg";
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import PreviousService from './PreviousService';
+import img from '../../assests/images/serviceb/arch.jpg';
+// import img1 from '../../assests/images/services/img1.jpg';
+// import img2 from '../../assests/images/services/img2.jpg';
+import img14 from '../../assests/images/serviceb/exterior.jpg';
+import img3 from '../../assests/images/serviceb/concrete.jpg';
+
+import img4 from '../../assests/images/serviceb/pipeline.jpg';
+import img5 from '../../assests/images/serviceb/foundation.jpg';
+import img6 from '../../assests/images/serviceb/electrical.jpg';
+import img7 from '../../assests/images/serviceb/painting.jpg';
+import img8 from '../../assests/images/serviceb/exacavtion.jpg';
+import img9 from '../../assests/images/serviceb/plumbing.jpg';
+
+const serviceImages = {
+  Architecture:img,
+  Grouting:img,
+  Excavation:img8,
+  Carpentry:img,
+  Roofing:img,
+  Electrical:img6,
+  PipeLine:img4,
+  InteriorDesign:img,
+  ExteriorDesign:img14,
+  Foundation:img5,
+  Concrete: img3,
+  Painting: img7,
+  Plumbing: img9,
+  Renovation:img
+};
 
 function Services() {
   const location = useLocation();
@@ -14,12 +42,10 @@ function Services() {
   const [services, setServices] = useState([]);
   const navigate = useNavigate();
 
-  // Scroll to the top whenever the page is rendered or updated
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Rotate content every 2.5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setContent((prev) => (prev + 1) % data.length);
@@ -27,7 +53,6 @@ function Services() {
     return () => clearInterval(interval);
   }, [data.length]);
 
-  // Fetch services based on the serviceType query
   useEffect(() => {
     const fetchServices = async () => {
       if (serviceType) {
@@ -43,7 +68,6 @@ function Services() {
     fetchServices();
   }, [serviceType]);
 
-  // Navigate to service details and scroll to the top
   const handleViewDetails = (service) => {
     navigate('/service_details', {
       state: {
@@ -62,9 +86,10 @@ function Services() {
         previousPath: location.pathname 
       },
     });
-    window.scrollTo(0, 0); // Ensure scrolling to the top after navigation
+    window.scrollTo(0, 0); 
   };
 
+  const backimg = serviceImages[serviceType] || serviceImages.Painting;
   return (
     <div>
       <Navbar />

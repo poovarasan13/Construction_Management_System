@@ -243,8 +243,10 @@ function VendorService() {
                                             <option value="Excavation">Excavation</option>
                                             <option value="Roofing">Roofing</option>
                                             <option value="Carpentry">Carpentry</option>
-                                            <option value="Interior">Interior</option>
+                                            <option value="InteriorDesign">Interior</option>
+                                            <option value="ExteriorDesign">Exterior</option>
                                             <option value="Architecture">Architecture</option>
+                                            <option value="Renovation">Renovation</option>
                                         </select>
                                     </div>
 

@@ -21,6 +21,7 @@ import img9 from "../assests/images/services/img9.jpg";
 import img10 from "../assests/images/services/img10.jpg";
 import img11 from "../assests/images/services/img11.jpg";
 import img12 from "../assests/images/services/img12.jpg";
+import img14 from "../assests/images/services/img14.jpg";
 import img13 from "../assests/images/services/Renovation.jpg";
 function Home() {
   const data = ["Building", "Designing", "Planning"];
@@ -256,8 +257,7 @@ function Home() {
       <div className="card card-block">
      
     <img src={img8} alt="Plumbing" style={{height:"200px"}}/>
-        <h5 className="card-title mt-3 mb-3 text-center">Plumbing</h5>
-       
+        <h5 className="card-title mt-3 mb-3 text-center">Plumbing</h5>      
   </div></Link>
   </div>
   <div className="col-md-3 col-sm-6 px-4 py-4">
@@ -284,12 +284,25 @@ function Home() {
   </div>
   <div className="col-md-3 col-sm-6 px-4 py-4">
   <Link 
-    to={`/services?serviceType=Interior`}
+    to={`/services?serviceType=InteriorDesign`}
     className="text-decoration-none"> 
        <div className="card card-block">
      
     <img src={img11} alt="Interior Design" style={{height:"200px"}}/>
         <h5 className="card-title mt-3 mb-3 text-center">Interior Design</h5>
+       
+  </div>
+  </Link>
+  </div>
+
+  <div className="col-md-3 col-sm-6 px-4 py-4">
+  <Link 
+    to={`/services?serviceType=ExteriorDesign`}
+    className="text-decoration-none"> 
+       <div className="card card-block">
+     
+    <img src={img14} alt="EXterior Design" style={{height:"200px"}}/>
+        <h5 className="card-title mt-3 mb-3 text-center">Exterior Design</h5>
        
   </div>
   </Link>
@@ -308,7 +321,7 @@ function Home() {
   </Link>
   </div>
 
-  <div className="col-md-3 col-sm-6 px-4 py-4">
+  {/* <div className="col-md-3 col-sm-6 px-4 py-4">
   <Link 
     to={`/services?serviceType=Repairing`}
     className="text-decoration-none"> 
@@ -319,7 +332,7 @@ function Home() {
        
   </div>
   </Link>
-  </div>
+  </div> */}
   
   
     {/* {services.length > 0 ? (

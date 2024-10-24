@@ -6,11 +6,14 @@ import Navbar from '../Navbar';
 import { useUser } from '../UserContext';
 import { useVendor } from '../VendorContext';
 import Footer from '../Footer';
-
+import typesOfWorks from './types'; 
 function ServiceDetails() {
-  const [uname, setName] = useState('');
-  const [uemail, setEmail] = useState('');
-  const [uphone, setPhone] = useState('');
+  const [display,setDisplay]=useState(true);
+  // const [uname, setName] = useState('');
+  // const [uemail, setEmail] = useState('');
+  // const [uphone, setPhone] = useState('');
+
+  const [type1, setType1] = useState('');
   const [date, setDate] = useState('');
   const [area, setArea] = useState('');
   const [place, setPlace] = useState('');
@@ -20,14 +23,17 @@ function ServiceDetails() {
   const [add_message, setAMessage] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-  const { username } = useUser();
+  const { username ,useremail,userphone} = useUser();
   const { fname } = useVendor();
   const { v_name, lname, image, company, type, image1, phone, email, year, price, about} = location.state || {};
-
+  const workOptions = typesOfWorks[type] || [];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const closeForm=()=>{
+    setDisplay(true);
+  }
   const handleRequestPricing = () => {
     if (fname) {
       Swal.fire({
@@ -38,8 +44,9 @@ function ServiceDetails() {
         confirmButtonText: 'OK',
       });
     } else if (username) {
-      const modal = new window.bootstrap.Modal(document.getElementById('requestPricingModal'));
-      modal.show();
+      setDisplay(false);
+      // const modal = new window.bootstrap.Modal(document.getElementById('requestPricingModal'));
+      // modal.show();
     } else {
       navigate('/login');
     }
@@ -47,14 +54,14 @@ function ServiceDetails() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     try {
       const response = await fetch('http://localhost:3003/user_request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, uname, uemail, uphone, date, area, message, add_message, v_name, type,place,price }),
+        body: JSON.stringify({ username, useremail, userphone, date, area, message, add_message, v_name, type,type1,place,price }),
       });
 
       const data = await response.json();
@@ -71,14 +78,15 @@ function ServiceDetails() {
           toast: true,
           showCloseButton: true,
         });
-
-        setName('');
-        setEmail('');
-        setPhone('');
+        setDisplay(true);
+        // setName('');
+        // setEmail('');
+        // setPhone('');
         setDate('');
         setArea('');
         setAMessage('');
         setPlace('');
+        setType1('');
       } else {
         Swal.fire({
           icon: 'error',
@@ -93,15 +101,16 @@ function ServiceDetails() {
     } catch (e) {
       console.log('Error in request:', e);
     }
-
-    const modal = window.bootstrap.Modal.getInstance(document.getElementById('requestPricingModal'));
-    modal.hide();
+    
+    // const modal = window.bootstrap.Modal.getInstance(document.getElementById('requestPricingModal'));
+    // modal.hide();
   };
 
   return (
     <div>
       <Navbar />
-
+      {display&&
+      <div>
      
       <div className="container-fluid hero-section d-flex align-items-center justify-content-center text-white" style={{ backgroundColor: '#1c1c1c', height: '300px' }}>
         <div className="text-center">
@@ -197,58 +206,91 @@ function ServiceDetails() {
           </div>
         </div>
       </div>
+</div>}
 
-      <div className="modal fade" id="requestPricingModal" tabIndex="-1" aria-labelledby="requestPricingModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="requestPricingModalLabel">Request Pricing</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{!display &&
+  <div className="request-pricing-form container-fluid">
+  <div className='row' style={{ backgroundColor: 'rgba(7, 7, 7, 0.9)' }}>
+    <div className='col pt-5 py-3'></div>
+  </div>
+  <div className="card mx-auto shadow-lg mt-5" style={{ maxWidth: '800px', borderRadius: '12px', backgroundColor: '#fff' }}>
+    <h5 className="text-center mb-4 h2 mt-3">Request Pricing</h5>
+    <div className='row justify-content-center'>
+      <div className='col-10'>
+        <form onSubmit={handleSubmit} className="p-4">
+          <div className="mb-4">
+            <label htmlFor="message" className="form-label">Message</label>
+            <textarea className="form-control shadow-sm" id="message" rows="3" onChange={(e) => setMessage(e.target.value)} value={message} style={{ borderRadius: '8px' }}></textarea>
+          </div>
+
+          {/* Optional Fields */}
+          {/* <div className="row mb-4">
+            <div className="col-md-6">
+              <label htmlFor="uname" className="form-label">Name</label>
+              <input type="text" className="form-control shadow-sm" id="uname" value={uname} onChange={(e) => setName(e.target.value)} style={{ borderRadius: '8px' }} />
             </div>
-            <div className="modal-body">
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="message" className="form-label">Message</label>
-                  <textarea className="form-control" id="message" rows="3" onChange={(e) => setMessage(e.target.value)} value={message}></textarea>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="uname" className="form-label">Name</label>
-                  <input type="text" className="form-control" id="uname" value={uname} onChange={(e) => setName(e.target.value)} />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="uemail" className="form-label">Email</label>
-                  <input type="email" className="form-control" id="uemail" value={uemail} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="uphone" className="form-label">Phone Number</label>
-                  <input type="tel" className="form-control" id="uphone" value={uphone} onChange={(e) => setPhone(e.target.value)} />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="eventDate" className="form-label">Service Start Date</label>
-                  <input type="date" className="form-control" id="eventDate" value={date} onChange={(e) => setDate(e.target.value)} />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="service" className="form-label">Area (Square Meters)</label>
-                  <input type="text" className="form-control" id="service" value={area} onChange={(e) => setArea(e.target.value)} />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="place" className="form-label">Location</label>
-                  <input type="text" className="form-control" id="place" value={place} onChange={(e) => setPlace(e.target.value)} />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="additionalMessage" className="form-label">Additional Message</label>
-                  <textarea className="form-control" id="additionalMessage" rows="3" value={add_message} onChange={(e) => setAMessage(e.target.value)}></textarea>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" className="btn btn-primary">Submit Request</button>
-                </div>
-              </form>
+            <div className="col-md-6">
+              <label htmlFor="uemail" className="form-label">Email</label>
+              <input type="email" className="form-control shadow-sm" id="uemail" value={uemail} onChange={(e) => setEmail(e.target.value)} style={{ borderRadius: '8px' }} />
             </div>
           </div>
-        </div>
+
+          <div className="mb-4">
+            <label htmlFor="uphone" className="form-label">Phone Number</label>
+            <input type="tel" className="form-control shadow-sm" id="uphone" value={uphone} onChange={(e) => setPhone(e.target.value)} style={{ borderRadius: '8px' }} />
+          </div> */}
+          
+          <div className="mb-4">
+            <label htmlFor="eventDate" className="form-label">Service Start Date</label>
+            <input type="date" className="form-control shadow-sm" id="eventDate" value={date} onChange={(e) => setDate(e.target.value)} style={{ borderRadius: '8px' }} />
+          </div>
+
+          <div className="mb-4">
+      <label htmlFor="type1" className="form-label">
+        Types of {type} Works
+      </label>
+      <br />
+      <select
+        id="type1"
+        value={type1}
+        onChange={(e) => setType1(e.target.value)}
+        className="form-control shadow-sm"
+        style={{ borderRadius: '8px' }}
+      >
+        {workOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
+          <div className="mb-4">
+            <label htmlFor="service" className="form-label">Area (Square Meters)</label>
+            <input type="text" className="form-control shadow-sm" id="service" value={area} onChange={(e) => setArea(e.target.value)} style={{ borderRadius: '8px' }} />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="place" className="form-label">Location</label>
+            <input type="text" className="form-control shadow-sm" id="place" value={place} onChange={(e) => setPlace(e.target.value)} style={{ borderRadius: '8px' }} />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="additionalMessage" className="form-label">Materials</label>
+            <textarea className="form-control shadow-sm" id="additionalMessage" rows="3" value={add_message} onChange={(e) => setAMessage(e.target.value)} style={{ borderRadius: '8px' }}></textarea>
+          </div>
+
+          <div className="text-center">
+            <button type="button" className="btn btn-secondary me-2 shadow-sm" onClick={closeForm} style={{ borderRadius: '8px' }}>Close</button>
+            <button type="submit" className="btn btn-primary shadow-sm" style={{ borderRadius: '8px' }}>Submit Request</button>
+          </div>
+        </form>
       </div>
+    </div>
+  </div>
+</div>
+
+
+}
       <Footer/>
     </div>
   );
