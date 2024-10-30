@@ -89,7 +89,7 @@ function VendorProgress() {
                     <div className="card-body">
                       <div className="row">
                         <div className="col">
-                          <p><strong>Customer Name:</strong> {request.uname}</p>
+                          <p><strong>Customer Name:</strong> {request.username}</p>
                           <p><strong>Service Start Date:</strong> {request.date}</p>
                           <p><strong>Type of Service:</strong> {request.type}</p>
                           <p><strong>Area:</strong> {request.area}</p>

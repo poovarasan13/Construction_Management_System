@@ -141,6 +141,7 @@ function VendorRequest() {
                       <p><strong>Specific Type in {request.type}:</strong> {request.type1}</p>
                       <p><strong>Area:</strong> {request.area}</p>
                       <p><strong>Location:</strong> {request.place}</p>
+                      <p><strong>Requirements giveby {request.username}:</strong> {request.add_message}</p>
                       {request.price && (
                         <p><strong>Amount For Services:</strong> ₹{request.price * parseInt(request.area)}</p>
                       )}

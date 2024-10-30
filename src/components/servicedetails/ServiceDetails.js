@@ -275,7 +275,7 @@ function ServiceDetails() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="additionalMessage" className="form-label">Materials</label>
+            <label htmlFor="additionalMessage" className="form-label">Any Materials You Want to Suggest</label>
             <textarea className="form-control shadow-sm" id="additionalMessage" rows="3" value={add_message} onChange={(e) => setAMessage(e.target.value)} style={{ borderRadius: '8px' }}></textarea>
           </div>
 

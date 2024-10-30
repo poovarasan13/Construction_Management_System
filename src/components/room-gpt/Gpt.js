@@ -85,25 +85,37 @@ const Gpt = () => {
           <div className="col-lg-10 col-md-10 col-sm-12">
             <div className="card shadow-lg p-5 bg-white rounded">
               <h1 className="mb-4 text-center text-warning">Generate Your Room Design's Here</h1>
-
-              <div className="input-group mb-3">
-                <input
+          <div className='row'>
+            <div className='col'>
+            <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   placeholder="Describe the image you want to create..."
-                  className="form-control rounded-pill px-4"
+                  className="form-control rounded-3 px-4"
                   aria-label="Image Description"
                 />
-                <div className="input-group-append">
+            </div>
+          </div>
+              <div >
+                
+                <br></br>
+                <div className='row justify-content-center'>
+                  <div className='col-1 '>
+                  <div className="input-group-append">
                   <button
-                    className="btn btn-primary rounded-pill px-4"
+                    className="btn btn-primary  px-4"
                     onClick={handleClick}
                     disabled={loading}
                   >
                     {loading ? 'Generating...' : 'Generate'}
                   </button>
                 </div>
+                  </div>
+                  
+                
+                </div>
+                
               </div>
 
               {error && <p className="text-danger text-center">{error}</p>}

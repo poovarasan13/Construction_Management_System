@@ -557,7 +557,7 @@ function Home() {
               style={{ width: "500px", height: "425px" }}
             />
           </div>
-          <div className="col-7">
+          <div className="col-7 ms-3">
             <div className="row px-5">
               <div className="col-12 py-4 ">
                 <h1>Our Skills</h1>
