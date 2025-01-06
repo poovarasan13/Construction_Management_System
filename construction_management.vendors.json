@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "6715c2e588128c7649d4c9e8"
+  },
+  "fname": "John",
+  "lname": "Wick",
+  "company": "Skyline Structures",
+  "category": "Electrical",
+  "email": "john@gmail.com",
+  "phone": "9361614200",
+  "password": "1234",
+  "state": "Kerala",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6716a9d408ee2111374e1484"
+  },
+  "fname": "Joseph",
+  "lname": "A",
+  "company": "IronPulse Builders",
+  "category": "Carpentry",
+  "email": "joseph@gmail.com",
+  "phone": "9361614200",
+  "password": "1234",
+  "state": "Kerala",
+  "__v": 0
+}]

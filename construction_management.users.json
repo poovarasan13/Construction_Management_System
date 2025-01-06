@@ -1,0 +1,70 @@
+[{
+  "_id": {
+    "$oid": "671633382b1b19a9cc0736fd"
+  },
+  "name": "ram",
+  "phone": "64534233263",
+  "email": "ram@gmail.com",
+  "password": "1234",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a73dc03a8146f87844ec7"
+  },
+  "name": "Alice",
+  "phone": "9361614204",
+  "email": "alice@gmail.com",
+  "password": "1234",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a82a403a8146f87844f34"
+  },
+  "name": "Ragav",
+  "phone": "9080155464",
+  "email": "ragava@gmail.com",
+  "password": "12345",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6729ec5832b3c5d5211dfb99"
+  },
+  "name": "Poovarasan",
+  "phone": "9361614200",
+  "email": "poovarasan936161@gmail.com",
+  "password": "1234",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6729ec6432b3c5d5211dfb9b"
+  },
+  "name": "Poovarasan",
+  "phone": "9361614200",
+  "email": "poovarasan936161@gmail.com",
+  "password": "1234",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6729f20932b3c5d5211dfbd9"
+  },
+  "name": "Poovarasan",
+  "phone": "9361614200",
+  "email": "717822f239@kce.ac.in",
+  "password": "1234",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673ae0466cdc13f1bf366b5c"
+  },
+  "name": "Nagulgfgf",
+  "phone": "9361614206",
+  "email": "poovarasan936161@gmail.com",
+  "password": "1234",
+  "__v": 0
+}]

@@ -1,0 +1,529 @@
+[{
+  "_id": {
+    "$oid": "671693c286b323df9b82e82a"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-10-04T00:00:00.000Z"
+  },
+  "area": "200",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "Use Asain Painting",
+  "v_name": "John",
+  "type": "Painting",
+  "type1": "Exterior Trim Painting",
+  "place": "dharmapuri",
+  "price": 300,
+  "accept": true,
+  "reject": false,
+  "__v": 0,
+  "amount": 20000,
+  "products": [
+    {
+      "name": "Nippon Paint",
+      "_id": {
+        "$oid": "67169bdc50f85aaed1fa9640"
+      }
+    },
+    {
+      "name": "HandMade Brushes",
+      "_id": {
+        "$oid": "67169bdc50f85aaed1fa9641"
+      }
+    }
+  ],
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "671693ee86b323df9b82e82c"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-10-04T00:00:00.000Z"
+  },
+  "area": "100",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "no",
+  "v_name": "John",
+  "type": "Painting",
+  "type1": "Cabinet Painting",
+  "place": "salem",
+  "price": 300,
+  "accept": true,
+  "reject": false,
+  "__v": 0,
+  "amount": 200000,
+  "products": [
+    {
+      "name": "Asain Paints or Nippon Paints",
+      "_id": {
+        "$oid": "671a6379da492031838ab0d0"
+      }
+    },
+    {
+      "name": "Water Coating Paints",
+      "_id": {
+        "$oid": "671a6379da492031838ab0d1"
+      }
+    }
+  ],
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "6716941d86b323df9b82e82e"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-10-05T00:00:00.000Z"
+  },
+  "area": "200",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "no",
+  "v_name": "John",
+  "type": "Painting",
+  "type1": "Trim & Molding Painting",
+  "place": "salem",
+  "price": 300,
+  "accept": false,
+  "reject": true,
+  "__v": 0,
+  "amount": null
+},
+{
+  "_id": {
+    "$oid": "67179a7f7c7d4eee6c4eabd1"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-10-25T00:00:00.000Z"
+  },
+  "area": "200",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "nil",
+  "v_name": "John",
+  "type": "Concrete",
+  "type1": "Concrete Patios",
+  "place": "salem",
+  "price": 1000,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "CEMENT",
+      "_id": {
+        "$oid": "6745c5a6e891871cd640b089"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 7000000,
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "671a4e30da492031838ab095"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-10-31T00:00:00.000Z"
+  },
+  "area": "400",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "no",
+  "v_name": "Joseph",
+  "type": "Concrete",
+  "type1": "Concrete Driveways",
+  "place": "Gandhipuram",
+  "price": 400,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "JSW Cement",
+      "_id": {
+        "$oid": "671a4e78da492031838ab09d"
+      }
+    },
+    {
+      "name": "TMT Bars",
+      "_id": {
+        "$oid": "671a4e78da492031838ab09e"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 200000,
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "671a707403a8146f87844e2c"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-11-07T00:00:00.000Z"
+  },
+  "area": "590",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "I Prefer for Ancient Architecture Model",
+  "v_name": "Joseph",
+  "type": "Architecture",
+  "type1": "Healthcare Architecture",
+  "place": "Sulur",
+  "price": 500,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "Ok ,We give you Ancient Architecture model",
+      "_id": {
+        "$oid": "671a732603a8146f87844e78"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 300000,
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "671a71b603a8146f87844e4f"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-11-07T00:00:00.000Z"
+  },
+  "area": "600",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "no suggestion",
+  "v_name": "Joseph",
+  "type": "Painting",
+  "type1": "Garage Door Painting",
+  "place": "Sundhrapuram",
+  "price": 500,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "We Suggest you to use asain paints",
+      "_id": {
+        "$oid": "671a73ba03a8146f87844ec4"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 320000
+},
+{
+  "_id": {
+    "$oid": "671a742a03a8146f87844ecd"
+  },
+  "username": "Alice",
+  "useremail": "alice@gmail.com",
+  "userphone": "9361614204",
+  "date": {
+    "$date": "2024-11-22T00:00:00.000Z"
+  },
+  "area": "250",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "I prefer for Low Budget Paints",
+  "v_name": "Joseph",
+  "type": "Painting",
+  "type1": "Cabinet Painting",
+  "place": "Sundhrapuram",
+  "price": 500,
+  "accept": false,
+  "reject": false,
+  "products": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a754603a8146f87844efd"
+  },
+  "username": "Alice",
+  "useremail": "alice@gmail.com",
+  "userphone": "9361614204",
+  "date": {
+    "$date": "2024-11-14T00:00:00.000Z"
+  },
+  "area": "250",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "Use a Latest Models",
+  "v_name": "Joseph",
+  "type": "Foundation",
+  "type1": "Block Foundation",
+  "place": "Sundhrapuram",
+  "price": 460,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "we are using Architecture model based on Latest and Trending Models",
+      "_id": {
+        "$oid": "671a759303a8146f87844f07"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 125000
+},
+{
+  "_id": {
+    "$oid": "671a8ae703a8146f87844f46"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-11-06T00:00:00.000Z"
+  },
+  "area": "500",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "use iron pipes",
+  "v_name": "John",
+  "type": "PipeLine",
+  "type1": "Industrial Pipeline",
+  "place": "Sundhrapuram",
+  "price": 150,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "ok i will use iron pipes",
+      "_id": {
+        "$oid": "671a8b8703a8146f87844f65"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 80000,
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "671a8e0403a8146f87844fb1"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-10-27T00:00:00.000Z"
+  },
+  "area": "300",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "asian paint",
+  "v_name": "Joseph",
+  "type": "Painting",
+  "type1": "Siding Painting",
+  "place": "coimbatore",
+  "price": 500,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "nippant",
+      "_id": {
+        "$oid": "671a8e8f03a8146f87844fc3"
+      }
+    },
+    {
+      "name": "jsw",
+      "_id": {
+        "$oid": "671a8e8f03a8146f87844fc4"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 100000,
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "672197f20c5537f662a95c73"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-11-09T00:00:00.000Z"
+  },
+  "area": "500",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "no requirement",
+  "v_name": "John",
+  "type": "Concrete",
+  "type1": "Outdoor Fireplace",
+  "place": "Gandhipuram",
+  "price": 1000,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "jsw cement",
+      "_id": {
+        "$oid": "672198770c5537f662a95c94"
+      }
+    },
+    {
+      "name": "tmt bars",
+      "_id": {
+        "$oid": "672198770c5537f662a95c95"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 200000
+},
+{
+  "_id": {
+    "$oid": "6729ec9732b3c5d5211dfba2"
+  },
+  "username": "Poovarasan",
+  "useremail": "poovarasan936161@gmail.com",
+  "userphone": "9361614200",
+  "date": {
+    "$date": "2024-11-28T00:00:00.000Z"
+  },
+  "area": "500",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "no",
+  "v_name": "John",
+  "type": "Concrete",
+  "type1": "Furniture, Sinks, Fire Bowls",
+  "place": "Sulur",
+  "price": 1000,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "Teak Wood",
+      "_id": {
+        "$oid": "6729ed0832b3c5d5211dfbb1"
+      }
+    },
+    {
+      "name": "Coating ",
+      "_id": {
+        "$oid": "6729ed0832b3c5d5211dfbb2"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 6000000,
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "6729f23e32b3c5d5211dfbdd"
+  },
+  "username": "Poovarasan",
+  "useremail": "717822f239@kce.ac.in",
+  "userphone": "9361614200",
+  "date": {
+    "$date": "2024-11-28T00:00:00.000Z"
+  },
+  "area": "50",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "made with wood and concrete",
+  "v_name": "John",
+  "type": "Concrete",
+  "type1": "Outdoor Fireplace",
+  "place": "Sulur",
+  "price": 1000,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "jsw cement",
+      "_id": {
+        "$oid": "6729f28c32b3c5d5211dfbee"
+      }
+    },
+    {
+      "name": "teak wood",
+      "_id": {
+        "$oid": "6729f28c32b3c5d5211dfbef"
+      }
+    },
+    {
+      "name": "strong steel",
+      "_id": {
+        "$oid": "6729f28c32b3c5d5211dfbf0"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 65000,
+  "display": true
+},
+{
+  "_id": {
+    "$oid": "673ae0976cdc13f1bf366b60"
+  },
+  "username": "Poovarasan",
+  "useremail": "poovarasan936161@gmail.com",
+  "userphone": "9361614200",
+  "date": {
+    "$date": "2024-11-19T00:00:00.000Z"
+  },
+  "area": "1000",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "",
+  "v_name": "John",
+  "type": "Electrical",
+  "type1": "Backup Generator Installation",
+  "place": "coimbatore",
+  "price": 200,
+  "accept": true,
+  "reject": false,
+  "products": [
+    {
+      "name": "jsw",
+      "_id": {
+        "$oid": "673ae0f66cdc13f1bf366b78"
+      }
+    }
+  ],
+  "__v": 0,
+  "amount": 200000
+},
+{
+  "_id": {
+    "$oid": "6745c610e891871cd640b096"
+  },
+  "username": "ram",
+  "useremail": "ram@gmail.com",
+  "userphone": "64534233263",
+  "date": {
+    "$date": "2024-11-29T00:00:00.000Z"
+  },
+  "area": "400",
+  "message": "We are currently planning a construction project and would like to learn more about your services. Could you please send us some additional information? Thank you!",
+  "add_message": "Nothing",
+  "v_name": "Joseph",
+  "type": "Concrete",
+  "type1": "Outdoor Kitchens & Counters",
+  "place": "Sundhrapuram",
+  "price": 400,
+  "accept": false,
+  "reject": false,
+  "products": [],
+  "__v": 0
+}]
