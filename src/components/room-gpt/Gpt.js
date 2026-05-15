@@ -13,26 +13,31 @@ const Gpt = () => {
   const [imageBlob, setImageBlob] = useState(null); 
   const [loading, setLoading] = useState(false); 
 
-  const token = "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";
-
   const query = async () => {
     try {
       setLoading(true); 
+      setError(''); // Clear previous errors
+      // Call your backend endpoint (uses Replicate API)
       const response = await fetch(
-        "https://api-inference.huggingface.co/models/ZB-Tech/Text-to-Image",
+        "http://localhost:3003/api/generate-image",
         {
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           method: "POST",
-          body: JSON.stringify({ "inputs": inputText }),
+          body: JSON.stringify({ prompt: inputText }),
         }
       );
   
       if (!response.ok) {
-        const errorMessage = await response.text(); 
-        throw new Error(errorMessage || 'Failed to fetch image');
+        let errorMessage = 'Failed to generate image';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } catch (e) {
+          errorMessage = `Server error: ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorMessage);
       }
   
       const blob = await response.blob();
