@@ -2,6 +2,7 @@
 const express = require('express');
 const connectDB = require('./db.js');
 const cors = require('cors');
+require('dotenv').config();
 const port = 3003;
 
 
@@ -12,6 +13,7 @@ const Services=require('./controllers/Services.js');
 const URequest=require('./controllers/User_Request.js');
 const Progress=require('./controllers/Progress.js')
 const Complaint=require('./controllers/Complaint.js');
+const ImageGenerator=require('./controllers/ImageGenerator.js');
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -25,6 +27,7 @@ app.use('/',Services);
 app.use('/',URequest);
 app.use('/',Progress);
 app.use('/',Complaint);
+app.use('/', ImageGenerator);
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
